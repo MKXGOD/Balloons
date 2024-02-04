@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public class RowUI : MonoBehaviour
+public class LeaderboardRowUI : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _rank;
     [SerializeField] private TextMeshProUGUI _name;

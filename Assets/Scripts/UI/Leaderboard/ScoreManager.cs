@@ -25,10 +25,6 @@ public class ScoreManager : MonoBehaviour
         var json = JsonUtility.ToJson(_scoreData);
         PlayerPrefs.SetString("scores", json);
     }
-    private void OnDestroy()
-    {
-        SaveScore();
-    }
 }
 
 [Serializable]

@@ -17,7 +17,6 @@ public class LeaderboardUI : MonoBehaviour
     public void Close()
     {
         RestartGame();
-
         gameObject.SetActive(false);
     }
 }

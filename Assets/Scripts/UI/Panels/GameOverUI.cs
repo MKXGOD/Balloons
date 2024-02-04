@@ -27,6 +27,7 @@ public class GameOverUI : MonoBehaviour
     private void SaveData()
     {
         _scoreManager.AddScore(new ScoreItem(CurrentName(), CurrentScore()));
+        _scoreManager.SaveScore();
     }
     public void Open(BankSystem bankSystem, ScoreManager scoreManager, LeaderboardUI leaderboard)
     {
