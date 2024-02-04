@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -29,3 +30,10 @@ public class ScoreManager : MonoBehaviour
         SaveScore();
     }
 }
+
+[Serializable]
+public struct ScoreData
+{
+    public List<ScoreItem> Scores;
+}
+

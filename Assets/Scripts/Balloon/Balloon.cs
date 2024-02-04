@@ -11,7 +11,7 @@ public class Balloon : MonoBehaviour, IDamageable
 
     private SpriteRenderer _spriteRenderer;
 
-    private Color[] _colors = new Color[4] { Color.red, Color.blue, Color.yellow, Color.green};
+    private Color32[] _colors = new Color32[4] { new Color32(233, 79, 55, 255), new Color32(0, 191, 255, 255), new Color32(255, 250, 205, 255), new Color32(127, 255, 0, 255) };
   
 
     public static Action OnDie;
@@ -21,10 +21,15 @@ public class Balloon : MonoBehaviour, IDamageable
     }
     private void Start()
     {
-        _spriteRenderer.color = _colors[UnityEngine.Random.Range(0, 4)];
         _maxHealthPoint = UnityEngine.Random.Range(1, 4);
         _healthPoint = _maxHealthPoint;
+
+        SetColor();
         UpdateHealthUI();
+    }
+    private void SetColor()
+    {
+        _spriteRenderer.color = _colors[UnityEngine.Random.Range(0, 4)];
     }
     private void UpdateHealthUI()
     {

@@ -4,7 +4,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private BankUI _bankUI;
-    [SerializeField] private GameOverPanel _gameOverPanel;
+    [SerializeField] private UIController _panelController;
     [SerializeField] private TextMeshProUGUI _healthText;
 
     private BankSystem _bankSystem;
@@ -12,12 +12,14 @@ public class Player : MonoBehaviour
     private int _health = 5;
     private void Awake()
     {
-        InitBankSystem();
-
-        _healthText.text = _health.ToString();
+        if (Time.timeScale == 0)
+            Time.timeScale = 1;
 
         Balloon.OnDie += OnBalloonDied;
         Shreder.OnBalloonMissed += OnBalloonMissed;
+
+        InitBankSystem();
+        UpdateHealthUI();
     }
     private void Update()
     {
@@ -42,12 +44,20 @@ public class Player : MonoBehaviour
     private void OnBalloonMissed()
     {
         _health--;
-        _healthText.text = _health.ToString();
+        UpdateHealthUI();
         if (_health <= 0)
-        {
-            _gameOverPanel.EndGame(_bankSystem.CurrentScore);
-            Destroy(gameObject);
-        }
+            Died();
+    }
+    private void Died()
+    {
+        Time.timeScale = 0;
+
+        _panelController.OpenGameOverUI(_bankSystem);
+        Destroy(gameObject);
+    }
+    private void UpdateHealthUI()
+    {
+        _healthText.text = _health.ToString();
     }
     private void OnDestroy()
     {

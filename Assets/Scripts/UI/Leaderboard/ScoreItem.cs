@@ -1,7 +1,7 @@
 using System;
 
 [Serializable]
-public class ScoreItem
+public struct ScoreItem
 {
     public string Name;
     public float Score;
